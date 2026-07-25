@@ -13,7 +13,6 @@ async function loadOwnedList(req, res, next) {
   next();
 }
 
-// Create a list
 router.post('/', async (req, res) => {
   const { name } = req.body;
   if (!name || !name.trim()) {
@@ -23,7 +22,6 @@ router.post('/', async (req, res) => {
   res.status(201).json({ list });
 });
 
-// Get all lists for the logged-in user, each with quick stats
 router.get('/', async (req, res) => {
   const lists = await TodoList.find({ owner: req.userId }).sort({ createdAt: 1 });
 
@@ -43,12 +41,10 @@ router.get('/', async (req, res) => {
   res.json({ lists: listsWithStats });
 });
 
-// Get a single list
 router.get('/:id', loadOwnedList, async (req, res) => {
   res.json({ list: req.list });
 });
 
-// Rename a list
 router.patch('/:id', loadOwnedList, async (req, res) => {
   const { name } = req.body;
   if (!name || !name.trim()) {
@@ -59,14 +55,13 @@ router.patch('/:id', loadOwnedList, async (req, res) => {
   res.json({ list: req.list });
 });
 
-// Delete a list (and its items)
 router.delete('/:id', loadOwnedList, async (req, res) => {
   await TodoItem.deleteMany({ list: req.list._id });
   await req.list.deleteOne();
   res.json({ message: 'List deleted' });
 });
 
-// Stats: completed / pending / total + counts per tag
+
 router.get('/:id/stats', loadOwnedList, async (req, res) => {
   const items = await TodoItem.find({ list: req.list._id });
   const total = items.length;
@@ -94,7 +89,6 @@ router.get('/:id/stats', loadOwnedList, async (req, res) => {
   });
 });
 
-// Generate / return the public share link for a list
 router.post('/:id/share', loadOwnedList, async (req, res) => {
   req.list.ensureShareToken();
   req.list.isPublic = true;
@@ -102,7 +96,6 @@ router.post('/:id/share', loadOwnedList, async (req, res) => {
   res.json({ list: req.list, shareToken: req.list.shareToken });
 });
 
-// Revoke public sharing
 router.delete('/:id/share', loadOwnedList, async (req, res) => {
   req.list.isPublic = false;
   await req.list.save();

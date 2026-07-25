@@ -13,7 +13,6 @@ async function loadOwnedList(req, res, next) {
   next();
 }
 
-// List items in a list, optionally filtered by tag: /?tag=urgent
 router.get('/', loadOwnedList, async (req, res) => {
   const query = { list: req.list._id };
   if (req.query.tag) {
@@ -27,7 +26,7 @@ router.get('/', loadOwnedList, async (req, res) => {
   res.json({ items });
 });
 
-// Create an item
+
 router.post('/', loadOwnedList, async (req, res) => {
   const { title, tags } = req.body;
   if (!title || !title.trim()) {
@@ -52,7 +51,7 @@ async function loadOwnedItem(req, res, next) {
   next();
 }
 
-// Update an item: rename, toggle completed, change tags
+
 router.patch('/:itemId', loadOwnedItem, async (req, res) => {
   const { title, completed, tags } = req.body;
   if (title !== undefined) {
@@ -67,13 +66,13 @@ router.patch('/:itemId', loadOwnedItem, async (req, res) => {
   res.json({ item: req.item });
 });
 
-// Delete an item
+
 router.delete('/:itemId', loadOwnedItem, async (req, res) => {
   await req.item.deleteOne();
   res.json({ message: 'Item deleted' });
 });
 
-// Reorder items: body = { orderedIds: [id1, id2, ...] }
+
 router.post('/reorder', loadOwnedList, async (req, res) => {
   const { orderedIds } = req.body;
   if (!Array.isArray(orderedIds)) {

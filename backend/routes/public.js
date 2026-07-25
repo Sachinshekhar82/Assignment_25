@@ -4,7 +4,7 @@ const TodoItem = require('../models/TodoItem');
 
 const router = express.Router();
 
-// Public, read-only view of a shared list by its share token
+
 router.get('/:token', async (req, res) => {
   const list = await TodoList.findOne({ shareToken: req.params.token, isPublic: true }).populate(
     'owner',

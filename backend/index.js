@@ -28,12 +28,12 @@ app.use('/api/lists', listRoutes);
 app.use('/api/lists/:listId/items', itemRoutes);
 app.use('/api/public', publicRoutes);
 
-// 404 handler
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Central error handler
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status || 500).json({ message: err.message || 'Server error' });
