@@ -16,7 +16,8 @@ export default function Sidebar({ lists, activeListId, onSelect, onCreate, user,
   return (
     <aside className="sidebar">
       <div className="sidebar-top">
-        <div className="brand-mark">Ledger</div>
+        <div className="brand-mark">To-do</div>
+            
         <div className="user-chip" title={user?.email}>
           {user?.name}
         </div>
