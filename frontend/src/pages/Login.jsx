@@ -29,7 +29,7 @@ export default function Login() {
       <div className="auth-card">
         <div className="brand-mark">To-do</div>
         <h1>Welcome back</h1>
-        <p className="muted">Log in to reach your lists from any device.</p>
+        <p className="muted">Log in to your App.</p>
 
         <form onSubmit={handleSubmit} className="stack">
           <label>
