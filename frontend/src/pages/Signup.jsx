@@ -35,7 +35,9 @@ export default function Signup() {
         <form onSubmit={handleSubmit} className="stack">
           <label>
             Name
+            
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+ 
           </label>
           <label>
             Email
