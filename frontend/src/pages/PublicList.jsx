@@ -18,7 +18,7 @@ export default function PublicList() {
     return (
       <div className="auth-shell">
         <div className="auth-card">
-          <div className="brand-mark">Ledger</div>
+          <div className="brand-mark">To-do</div>
           <p className="form-error">{error}</p>
         </div>
       </div>
