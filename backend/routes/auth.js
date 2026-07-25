@@ -37,6 +37,7 @@ router.post('/signup', async (req, res) => {
     console.log('Generated token:', token); // Debugging line
     res.status(201).json({ token, user: user.toSafeObject() });
   } catch (err) {
+    console.error('Signup error:', err);
     res.status(500).json({ message: 'Could not create account', error: err.message });
   }
 });
