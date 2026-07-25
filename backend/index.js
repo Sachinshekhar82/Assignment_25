@@ -9,7 +9,6 @@ const itemRoutes = require('./routes/items');
 const publicRoutes = require('./routes/public');
 
 const app = express();
-
 const allowedOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
   .split(',')
   .map((o) => o.trim());
@@ -41,7 +40,14 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
+console.log(`Server is running on port ${PORT}`);
 
-connectDB().then(() => {
-  app.listen(PORT, () => console.log(`API server running on port ${PORT}`));
+connectDB()
+
+
+
+
+app.listen(5000, () => {
+  console.log('Server is running on port 5000');
 });
+

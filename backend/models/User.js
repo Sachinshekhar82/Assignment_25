@@ -23,6 +23,7 @@ userSchema.pre('save', async function hashPassword(next) {
   next();
 });
 
+
 userSchema.methods.comparePassword = function comparePassword(candidate) {
   return bcrypt.compare(candidate, this.password);
 };
