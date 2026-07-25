@@ -30,7 +30,7 @@ export default function Signup() {
       <div className="auth-card">
         <div className="brand-mark">To-do</div>
         <h1>Create your account</h1>
-        <p className="muted">Keep every todo list in one place, on every device.</p>
+        <p className="muted">Sign up to get started.</p>
 
         <form onSubmit={handleSubmit} className="stack">
           <label>
